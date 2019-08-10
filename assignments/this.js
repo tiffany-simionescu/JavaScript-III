@@ -21,6 +21,7 @@
 // Principle 1
 
 function principleOne(name) {
+  // Window / Global Scope for this keyword
   console.log(this);
   return name;
 }
@@ -28,6 +29,7 @@ console.log(principleOne("Window/Global Object Binding "));
 
 // Principle 2
 
+// myGreeting Object
 const myGreeting = {
   name: "Tiffany",
   age: 31,
@@ -38,12 +40,59 @@ const myGreeting = {
     );
   }
 };
+
+// Passing argumnet to myGreeting Object
 myGreeting.sayHello("Konnichiwa");
 
 // Principle 3
 
-// code example for New Binding
+// Constructor Function for aboutMyChild
+function aboutMyChild(name, pronoun, food, color) {
+  this.name = name;
+  this.pronoun = pronoun;
+  this.favFood = food;
+  this.favColor = color;
+  this.speak = function() {
+    console.log(this);
+    console.log(
+      `My child's name is ${this.name}. ${this.pronoun} loves ${
+        this.favFood
+      } and the color ${this.favColor}.`
+    );
+  };
+}
+
+// Creating new Objects dougie and sophie using the new keyword with the aboutMyChild function constructor. Passing four arguments.
+const dougie = new aboutMyChild("Dougie", "He", "pizza", "green");
+const sophie = new aboutMyChild("Sophie", "She", "chips", "pink");
+
+// Applying the speak method from the aboutMyChild function constructor that these new objects now poses.
+dougie.speak();
+sophie.speak();
 
 // Principle 4
 
-// code example for Explicit Binding
+// tiffObjFavs Object
+const tiffObjFavs = {
+  name: "Tiffany",
+  favColor: "blue",
+  favFood: "taquitos",
+  favBook: "The Da Vinci Code by Dan Brown"
+};
+
+// An Array of skills
+const myArraySkills = ["HTML5", "CSS3", "JavaScript", "Node.js"];
+// Node.js shouldn't show up when I use the apply method on the allAboutMe function.
+
+// The parameters will take the first values of the myArraySkills array as arguments. The this keyword will apply to the tiffObjFavs when using the apply method on this function.
+function allAboutMe(param1, param2, param3) {
+  console.log(this);
+  return `Hi, my name is ${this.name}. My favorite food is ${
+    this.favFood
+  }, my favorite color is ${this.favColor}, and my favorite book is ${
+    this.favBook
+  }. When it comes to web developement, I am skilled at ${param1}, ${param2} and ${param3}.`;
+}
+
+// Used the apply method on the allAboutMe function, and passed tiffObjFavs Object and myArraySkills as arguments.
+console.log(allAboutMe.apply(tiffObjFavs, myArraySkills));
