@@ -66,7 +66,7 @@ function aboutMyChild(name, pronoun, food, color) {
 const dougie = new aboutMyChild("Dougie", "He", "pizza", "green");
 const sophie = new aboutMyChild("Sophie", "She", "chips", "pink");
 
-// Applying the speak method from the aboutMyChild function constructor that these new objects now poses.
+// Applying the speak property from the function constructor aboutMyChild
 dougie.speak();
 sophie.speak();
 
@@ -84,8 +84,9 @@ const tiffObjFavs = {
 const myArraySkills = ["HTML5", "CSS3", "JavaScript", "Node.js"];
 // Node.js shouldn't show up when I use the apply method on the allAboutMe function.
 
-// The parameters will take the first values of the myArraySkills array as arguments. The this keyword will apply to the tiffObjFavs when using the apply method on this function.
+// The parameters will take the first values of myArraySkills array as arguments. //
 function allAboutMe(param1, param2, param3) {
+  // The this keyword will apply to the tiffObjFavs.
   console.log(this);
   return `Hi, my name is ${this.name}. My favorite food is ${
     this.favFood
@@ -94,5 +95,4 @@ function allAboutMe(param1, param2, param3) {
   }. When it comes to web developement, I am skilled at ${param1}, ${param2} and ${param3}.`;
 }
 
-// Used the apply method on the allAboutMe function, and passed tiffObjFavs Object and myArraySkills as arguments.
 console.log(allAboutMe.apply(tiffObjFavs, myArraySkills));
