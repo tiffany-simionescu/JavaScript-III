@@ -47,26 +47,29 @@ myGreeting.sayHello("Konnichiwa");
 // Principle 3
 
 // Constructor Function for aboutMyChild
-function aboutMyChild(name, pronoun, food, color) {
+function AboutMyChild(name, pronoun, food, color) {
   this.name = name;
   this.pronoun = pronoun;
   this.favFood = food;
   this.favColor = color;
-  this.speak = function() {
-    console.log(this);
-    console.log(
-      `My child's name is ${this.name}. ${this.pronoun} loves ${
-        this.favFood
-      } and the color ${this.favColor}.`
-    );
-  };
 }
 
-// Creating new Objects dougie and sophie using the new keyword with the aboutMyChild function constructor. Passing four arguments.
-const dougie = new aboutMyChild("Dougie", "He", "pizza", "green");
-const sophie = new aboutMyChild("Sophie", "She", "chips", "pink");
+// Created a prototype property for the speak function outside of the Constructor Function
+AboutMyChild.prototype.speak = function() {
+  console.log(this);
+  console.log(
+    `My child's name is ${this.name}. ${this.pronoun} loves ${
+      this.favFood
+    } and the color ${this.favColor}.`
+  );
+};
+
+// Creating new Objects dougie and sophie using the new keyword with the aboutMyChild function constructor.
+const dougie = new AboutMyChild("Dougie", "He", "pizza", "green");
+const sophie = new AboutMyChild("Sophie", "She", "chips", "pink");
 
 // Applying the speak property from the function constructor aboutMyChild
+// Invoking
 dougie.speak();
 sophie.speak();
 
