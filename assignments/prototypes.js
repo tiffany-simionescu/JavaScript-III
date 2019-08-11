@@ -74,16 +74,18 @@ function Villain(attrs) {
   this.attack = attrs.attack;
 }
 
+// How to just use Villain/Hero Object model and not a specific Villain/Hero object that I have created. I want to be able to use this for multiple Villains/Heroes.
 Villain.prototype.attackPoints = function() {
-  let heroHealthValue = Hero.healthPoints - Villain.attack;
-  if (heroHealthValue <= 0) {
-    // Returns 'Hero' as Hero's name
-    return `${Hero.name} was defeated.`;
-  } else {
-    // Returns NaN
-    return `${Hero.name} is still alive! ${
-      Hero.name
-    } has ${heroHealthValue} points left.`;
+  for (let i = 10; i > 0; i--) {
+    let heroHealthValue = simba.healthPoints - scar.attack;
+    let newHeroHealthValue = heroHealthValue;
+    if (newHeroHealthValue <= 0) {
+      return `${simba.name} was defeated.`;
+    } else {
+      return `${simba.name} is still alive! ${
+        simba.name
+      } has ${newHeroHealthValue} points left.`;
+    }
   }
 };
 
@@ -94,16 +96,15 @@ function Hero(attrs) {
 }
 
 Hero.prototype.attackPoints = function() {
-  let villainHealthValue = Villain.healthPoints - Hero.attack;
-  if (villainHealthValue <= 0) {
-    // Returns 'Villain' and Villain's name
-    return `${Villain.name} was defeated.`;
-  } else {
-    return `${Villain.name} is still alive! ${
-      Villain.name
-      // Returns NaN
-    } has ${villainHealthValue} points left.`;
-  }
+  // let villainHealthValue = scar.healthPoints - simba.attack;
+  // scar.healthPoints -= villainHealthValue;
+  // if (villainHealthValue <= 0) {
+  //   return `${scar.name} was defeated.`;
+  // } else {
+  //   return `${scar.name} is still alive! ${scar.name} has ${
+  //     scar.healthPoints
+  //   } points left.`;
+  // }
 };
 
 /*
@@ -200,11 +201,19 @@ console.log(mage.takeDamage()); // Bruce took damage.
 console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
 
 // STRETCH
+
+// Shows the properties and values for objects scar and simba.
 console.log(scar);
 console.log(simba);
 
-console.log(simba.attackPoints());
-console.log(scar.attackPoints());
+// Battle of methods
+let firstAttackSimba = simba.attackPoints();
+let firstAttackScar = scar.attackPoints();
+console.log(firstAttackScar);
+console.log(firstAttackSimba);
+
+// Returns same score - The score should decrement by the Simba's attack value.
+console.log(firstAttackScar);
 
 // Stretch task:
 // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.
